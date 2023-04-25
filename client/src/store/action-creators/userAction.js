@@ -1,4 +1,5 @@
-import { $host } from '../../http'
+import $host from '../../http/index'
+import axios from 'axios'
 import { userActionTypes } from '../reducer/userReducer'
 
 export const fetchUserRegistration = (email, password) => async (dispatch) => {
@@ -14,13 +15,14 @@ export const fetchUserLogin = (email, password) => async (dispatch) => {
 }
 
 export const fetchUserLogout = () => async (dispatch) => {
-    await $host.post('/api/user/logout')
+    await $host.post('/api/user/logout',)
     localStorage.removeItem('token')
     dispatch({ type: userActionTypes.FETCH_USER_LOGOUT, payload: { user: {}, isAuth: false } })
 }
 
 export const fetchUserRefresh = () => async (dispatch) => {
-    const response = await $host.get('/api/user/refresh')
+    //const response = await $host.get('/api/user/refresh',)
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/user/refresh`, { withCredentials: true })
     localStorage.setItem('token', response.data.accessToken)
     dispatch({ type: userActionTypes.FETCH_USER_REFRESH, payload: { user: response.data.user, isAuth: false } })
 }
