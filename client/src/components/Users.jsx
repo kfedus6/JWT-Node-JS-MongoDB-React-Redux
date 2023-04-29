@@ -13,11 +13,11 @@ const Users = ({ users, user }) => {
         dispatch(fetchUsers())
     }
     return (
-        <div>
+        <div className='container-users'>
             <div>
                 <h2>Користувач зареєструваний {user.email}</h2>
             </div>
-            <div>
+            <div className='btn'>
                 <button onClick={logout}>exit</button>
                 <button onClick={getUsers}>getUsers</button>
             </div>
@@ -25,7 +25,9 @@ const Users = ({ users, user }) => {
                 {users.map(item => {
                     return (
                         <div key={item._id}>
-                            {item.email}
+                            <ul>
+                                <li>{item.email}</li>
+                            </ul>
                         </div>
                     )
                 })}

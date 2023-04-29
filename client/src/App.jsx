@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Registration from './components/Registration'
 import Login from './components/Login'
 import Users from './components/Users'
+import Loading from './components/Loading'
 
 const App = () => {
     const [check, setCheck] = useState(true)
@@ -19,11 +20,11 @@ const App = () => {
     }, [])
 
     return (
-        <div>
+        <div className='app'>
             {isLoading ?
                 <>
                     <div>
-                        <h1>Загрузка...</h1>
+                        <Loading />
                     </div>
                 </>
                 :
